@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:09 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/04 02:19:18 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/06 18:57:27 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 #  define BUFFER_SIZE 42
 # endif
 
-size_t	ft_strlen(const char *c);
-char	*ft_strjoin_ptr(const char *pre, const char *suf, int size);
+size_t	ft_strlen_safe(const char *s);
+char	*ft_splitdup_keepdelim(const char *s, const char c);
+char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strchr(const char *str, int c);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
 char	*ft_strdup(const char *s);
-char	*ft_splitdup(const char *s, const char c);
 
 #endif
