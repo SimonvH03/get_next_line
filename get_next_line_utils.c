@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:56:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/06 19:13:04 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:31:05 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,25 @@ size_t	ft_strlen_safe(const char *s)
 
 char	*ft_splitdup_keepdelim(const char *s, const char c)
 {
-	size_t	size;
+	size_t	i;
 	char	*ptr;
 
-	size = 0;
-	while (s[size] && s[size] != c)
-		size++;
-	size++;
-	ptr = malloc((size + 1) * sizeof(char));
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	i++;
+	ptr = malloc((i + 1) * sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
-	ptr[size] = '\0';
-	while (size--)
-		ptr[size] = s[size];
+	ptr[i] = '\0';
+	while (i--)
+		ptr[i] = s[i];
+	if (s)
+		free((char *)s);
 	return (ptr);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(const char *s1, const char *s2, size_t size)
 {
 	char			*ptr;
 	const size_t	s1len = ft_strlen_safe(s1);
@@ -60,12 +62,13 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		i++;
 	}
 	i = 0;
-	while (i < s2len)
+	while (i < s2len && size--)
 	{
 		ptr[s1len + i] = s2[i];
 		i++;
 	}
 	ptr[s1len + s2len] = '\0';
+	free((char *)s1);
 	return (ptr);
 }
 
