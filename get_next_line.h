@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:09 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/07 05:10:19 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/07 14:50:01 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_splitdup_nl(const char *src);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strjoin(const char *s1, const char *s2);
-char	*ft_strdup(char *old, const char *src);
+char	*ft_residu(const char *src);
 char	*get_next_line(int fd);
 
 #endif

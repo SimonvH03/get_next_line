@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:56:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/07 05:34:37 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/07 15:44:01 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ size_t	ft_strlen(const char *src)
 	size_t	i;
 
 	i = 0;
-	while (src && src[i])
-		i++;
+	if (src)
+		while (src[i])
+			i++;
 	return (i);	
 }
 
@@ -28,11 +29,14 @@ char	*ft_strchr(const char *str, int c)
 	int	i;
 
 	i = 0;
-	while (str && (str[i] || str[i] == (char)c))
+	if (str)
 	{
-		if (str[i] == (char)c)
-			return ((char *)(str + i));
-		i++;
+		while (str[i] || str[i] == (char)c)
+		{
+			if (str[i] == (char)c)
+				return ((char *)(str + i));
+			i++;
+		}
 	}
 	return (NULL);
 }
@@ -53,6 +57,8 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		ptr[i] = s1[i];
 		i++;
 	}
+	if (s1)
+		free((char *)s1);
 	i = 0;
 	while (i < s2len)
 	{
@@ -60,30 +66,28 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		i++;
 	}
 	ptr[s1len + s2len] = '\0';
-	if (s1)
-		free((char *)s1);
 	return (ptr);
 }
 
-char	*ft_strdup(char *old, const char *src)
+char	*ft_residu(const char *pile)
 {
-	int	i;
-	char	*ptr;
+	char	*nl;
+	char	*res;
+	int		i;
 
-	if (src == NULL)
-		return (NULL);
-	src++;
-	ptr = malloc((ft_strlen(src) + 1) * sizeof(char));
-	if (ptr == NULL)
-		return (NULL);
+	nl = ft_strchr(pile, '\n');
+	if (nl != NULL)
+		nl++;
 	i = 0;
-	while (src[i])
-	{
-		ptr[i] = src[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	if (old)
-		free(old);
-	return (ptr);
+	if (nl)
+		while (nl[i])
+			i++;
+	res = (char *)malloc((i + 1) * sizeof(char));
+	if (res == NULL)
+		return (NULL);
+	res[i] = '\0';
+	while (i--)
+		res[i] = nl[i];
+	free((char *)pile);
+	return (res);
 }
