@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:56:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/07 15:44:01 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/07 19:25:18 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlen(const char *src)
 	if (src)
 		while (src[i])
 			i++;
-	return (i);	
+	return (i);
 }
 
 char	*ft_strchr(const char *str, int c)
