@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:09 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/06 20:43:19 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/07 05:10:19 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000000
+#  define BUFFER_SIZE 42
 # endif
 
-size_t	ft_strlen_safe(const char *s);
-char	*ft_splitdup_keepdelim(const char *s, const char c);
-char	*ft_strjoin(const char *s1, const char *s2, size_t size);
+char	*ft_read_nl(int fd, char *pile);
+char	*ft_splitdup_nl(const char *src);
+size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *str, int c);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
-char	*ft_strdup(const char *s);
-char	*ft_read_delim(int fd, const char delim, char *excess);
+char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_strdup(char *old, const char *src);
 char	*get_next_line(int fd);
 
 #endif

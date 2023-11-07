@@ -3,79 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/06 20:48:05 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/07 05:37:42 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
 
-char	*ft_read_delim(int fd, const char delim, char *excess)
+char	*ft_read_nl(int fd, char *pile)
 {
 	char	*buffer;
 	int		bytes_read;
-	char	*found;
 
-	found = NULL;
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (buffer == NULL)
 		return (NULL);
-	bytes_read = 1;
-	if (excess)
-		found = ft_strjoin(found, excess, BUFFER_SIZE);
-	while (bytes_read && ft_strchr(found, delim) == found)
+	bytes_read = 42;
+	while (bytes_read && !ft_strchr(pile, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
+		if (bytes_read < 0)
 		{
 			free(buffer);
-			free(found);
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
-		found = ft_strjoin(found, buffer, bytes_read);
+		pile = ft_strjoin(pile, buffer);
 	}
 	free(buffer);
-	return (found);
+	return (pile);
+}
+
+char	*ft_splitdup_nl(const char *str)
+{
+	size_t	i;
+	char	*ptr;
+
+	ptr = ft_strchr(str, '\n');
+	if (ptr == NULL)
+		return (NULL);
+	i = ptr - str + 1;
+	ptr = malloc((i + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ptr[i] = '\0';
+	while (i--)
+		ptr[i] = str[i];
+	return (ptr);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*excess;
-	char		*found;
-	const char	delim = '\n';
-
-	found = ft_read_delim(fd, delim, excess);
-	if (*found)
-		excess = ft_strdup(ft_strchr(found, delim) + 1);
-	found = ft_splitdup_keepdelim(found, delim);
-	return (found);
-}
-
-int	main(void)
-{
-	int			fd;
-	int			line;
+	static char	*pile;
 	char		*nextline;
 
-	line = 0;
-	fd = open("test5.txt", O_RDONLY);
-	while (line < 20)
-	{
-		nextline = get_next_line(fd);
-		if (nextline == NULL)
-		{
-			printf("nextline == NULL: stop.");
-			return (0);
-		}
-		printf(">> nextline %i:	%s\n", line, nextline);
-		line++;
-		free(nextline);
-	}
-	close(fd);
-	return (0);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	pile = ft_read_nl(fd, pile);
+	nextline = ft_splitdup_nl(pile);
+	pile = ft_strdup(pile, ft_strchr(pile, '\n'));
+	return (nextline);
 }
+
+// int	main(void)
+// {
+// 	int			fd;
+// 	int			line;
+// 	char		*nextline;
+
+// 	line = 0;
+// 	fd = open("test5.txt", O_RDONLY);
+// 	while (line < 20)
+// 	{
+// 		nextline = get_next_line(fd);
+// 		if (nextline == NULL)
+// 		{
+// 			printf("nextline == NULL: stop.");
+// 			return (0);
+// 		}
+// 		printf(">> nextline %i:	%s\n", line, nextline);
+// 		line++;
+// 		free(nextline);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
