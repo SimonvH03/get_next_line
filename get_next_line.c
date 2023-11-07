@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/07 20:39:02 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/07 20:46:30 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*ft_read_nl(int fd, char *pile)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
 		{
-			free(pile);
+			if (pile)
+				free(pile);
 			free(buffer);
 			return (NULL);
 		}
