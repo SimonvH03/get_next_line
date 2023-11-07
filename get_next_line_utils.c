@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:56:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/07 19:25:18 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/07 20:38:26 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,25 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		i++;
 	}
 	ptr[s1len + s2len] = '\0';
+	return (ptr);
+}
+
+char	*ft_splitdup_nl(const char *str)
+{
+	size_t	i;
+	char	*ptr;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	ptr = malloc((i + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ptr[i] = '\0';
+	while (i--)
+		ptr[i] = str[i];
 	return (ptr);
 }
 
