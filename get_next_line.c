@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/07 20:46:30 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/08 21:22:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,66 @@ char	*ft_read_nl(int fd, char *pile)
 	char	*buffer;
 	int		bytes_read;
 
+	if (ft_strchr(pile, '\n'))
+		return (pile);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (buffer == NULL)
 		return (NULL);
-	bytes_read = 42;
-	while (bytes_read > 0 && !ft_strchr(pile, '\n'))
+	bytes_read = BUFFER_SIZE;
+	while (bytes_read == BUFFER_SIZE && !ft_strchr(pile, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
-		{
-			if (pile)
-				free(pile);
-			free(buffer);
-			return (NULL);
-		}
-		buffer[bytes_read] = '\0';
-		pile = ft_strjoin(pile, buffer);
+		pile = ft_strjoin(pile, buffer, bytes_read);
 	}
 	free(buffer);
-	if (*pile == '\0' && bytes_read == 0)
-	{
-		free(pile);
-		return (NULL);
-	}
 	return (pile);
+}
+
+char	*ft_splitdup_nl(const char *str)
+{
+	size_t	i;
+	char	*ptr;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	ptr = malloc((i + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ptr[i] = '\0';
+	while (i--)
+		ptr[i] = str[i];
+	return (ptr);
+}
+
+char	*ft_residu(const char *pile)
+{
+	char	*nl;
+	char	*res;
+	int		i;
+
+	nl = ft_strchr(pile, '\n');
+	if (nl != NULL)
+		nl++;
+	i = 0;
+	if (nl)
+		while (nl[i])
+			i++;
+	res = (char *)malloc((i + 1) * sizeof(char));
+	if (res == NULL)
+		return (NULL);
+	res[i] = '\0';
+	while (i--)
+		res[i] = nl[i];
+	free((char *)pile);
+	return (res);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*pile;
+	static char	*pile = NULL;
 	char		*nextline;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)

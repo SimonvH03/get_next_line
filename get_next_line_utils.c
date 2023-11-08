@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:56:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/07 20:38:26 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/08 20:18:44 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,72 +41,39 @@ char	*ft_strchr(const char *str, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_safe_err_exit(const char *pile, const char *ptr)
 {
+	if (pile)
+		free((char *)pile);
+	if (ptr && *ptr)
+		return ((char *)ptr);
+	return (NULL);
+}
+
+char	*ft_strjoin(const char *pile, const char *buff, int n)
+{
+	const size_t	p_len = ft_strlen(pile);
 	char			*ptr;
-	const size_t	s1len = ft_strlen(s1);
-	const size_t	s2len = ft_strlen(s2);
 	size_t			i;
 
-	ptr = (char *)malloc((s1len + s2len + 1) * sizeof(char));
+	ptr = NULL;
+	if ((p_len == 0 && n == 0) || n < 0)
+		return (ft_safe_err_exit(pile, ptr));
+	ptr = (char *)malloc((p_len + n + 1) * sizeof(char));
 	if (ptr == NULL)
-		return (NULL);
+		return (ft_safe_err_exit(pile, ptr));
 	i = 0;
-	while (i < s1len)
+	while (i < p_len)
 	{
-		ptr[i] = s1[i];
+		ptr[i] = pile[i];
 		i++;
 	}
-	if (s1)
-		free((char *)s1);
 	i = 0;
-	while (i < s2len)
+	while (i < (size_t)n)
 	{
-		ptr[s1len + i] = s2[i];
+		ptr[p_len + i] = buff[i];
 		i++;
 	}
-	ptr[s1len + s2len] = '\0';
-	return (ptr);
-}
-
-char	*ft_splitdup_nl(const char *str)
-{
-	size_t	i;
-	char	*ptr;
-
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	ptr = malloc((i + 1) * sizeof(char));
-	if (ptr == NULL)
-		return (NULL);
-	ptr[i] = '\0';
-	while (i--)
-		ptr[i] = str[i];
-	return (ptr);
-}
-
-char	*ft_residu(const char *pile)
-{
-	char	*nl;
-	char	*res;
-	int		i;
-
-	nl = ft_strchr(pile, '\n');
-	if (nl != NULL)
-		nl++;
-	i = 0;
-	if (nl)
-		while (nl[i])
-			i++;
-	res = (char *)malloc((i + 1) * sizeof(char));
-	if (res == NULL)
-		return (NULL);
-	res[i] = '\0';
-	while (i--)
-		res[i] = nl[i];
-	free((char *)pile);
-	return (res);
+	ptr[p_len + n] = '\0';
+	return (ft_safe_err_exit(pile, ptr));
 }
