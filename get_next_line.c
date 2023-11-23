@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/14 18:05:40 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:59:30 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_read_nl(int fd, char *pile)
 
 char	*ft_splitdup_nl(const char *str)
 {
-	size_t	i;
+	int		i;
 	char	*ptr;
 
 	i = 0;

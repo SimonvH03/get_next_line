@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:09 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/08 20:17:16 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:00:14 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 char	*ft_read_nl(int fd, char *pile);
 char	*ft_splitdup_nl(const char *src);
-size_t	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 char	*ft_strchr(const char *str, int c);
 char	*ft_safe_err_exit(const char *pile, const char *ptr);
 char	*ft_strjoin(const char *s1, const char *s2, int n);

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:56:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/08 20:18:44 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:58:55 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-size_t	ft_strlen(const char *src)
+int	ft_strlen(const char *src)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (src)
@@ -52,9 +52,9 @@ char	*ft_safe_err_exit(const char *pile, const char *ptr)
 
 char	*ft_strjoin(const char *pile, const char *buff, int n)
 {
-	const size_t	p_len = ft_strlen(pile);
-	char			*ptr;
-	size_t			i;
+	const int	p_len = ft_strlen(pile);
+	char		*ptr;
+	int			i;
 
 	ptr = NULL;
 	if ((p_len == 0 && n == 0) || n < 0)
@@ -69,7 +69,7 @@ char	*ft_strjoin(const char *pile, const char *buff, int n)
 		i++;
 	}
 	i = 0;
-	while (i < (size_t)n)
+	while (i < n)
 	{
 		ptr[p_len + i] = buff[i];
 		i++;
