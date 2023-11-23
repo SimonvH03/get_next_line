@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:56:11 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/23 18:58:55 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/23 19:33:54 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_safe_err_exit(const char *pile, const char *ptr)
 	return (NULL);
 }
 
-char	*ft_strjoin(const char *pile, const char *buff, int n)
+char	*ft_strnjoin(const char *pile, const char *buff, int n)
 {
 	const int	p_len = ft_strlen(pile);
 	char		*ptr;

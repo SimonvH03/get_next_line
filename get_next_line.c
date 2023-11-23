@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/23 18:59:30 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/23 19:41:09 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ char	*ft_residu(const char *pile)
 			i++;
 	res = (char *)malloc((i + 1) * sizeof(char));
 	if (res == NULL)
+	{
+		free((char *)pile);
 		return (NULL);
+	}
 	res[i] = '\0';
 	while (i--)
 		res[i] = nl[i];
@@ -86,6 +89,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	nextline = ft_splitdup_nl(pile);
 	pile = ft_residu(pile);
+	if (pile == NULL)
+		free(nextline);
 	return (nextline);
 }
 
