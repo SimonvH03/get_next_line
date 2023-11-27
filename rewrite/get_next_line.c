@@ -6,19 +6,63 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/24 21:45:46 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:09:24 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*ft_strjoin_gnl(const char *newline, const char *buffer)
+{
+	char		*ptr;
+	const int	n_len = ft_strlen(newline);
+	const int	b_len = ft_strlen(buffer);
+	const int	b_nl = ft_strchr(buffer, '\n');
+	int			i;
+
+	if (b_len > b_nl)
+		i = n_len + b_len;
+	else
+		i = n_len + b_nl;
+	ptr = (char *)malloc((i + 1) * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ptr[i] = '\0';
+	while (i-- > n_len)
+		ptr[i] = buffer[i - n_len];
+	i++;
+	while (i--)
+		ptr[i] = newline[i];
+	ft_free ((char *)newline);
+	return (ptr);
+}
+
+void	ft_residu(char *buffer, const char *residu)
+{
+	if (residu)
+		while (*residu)
+			*buffer++ = *residu++;
+	*buffer = '\0';
+}
+
 char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
 	char		*newline;
-	char		*pile;
+	int			bytes_read;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, buffer, 0) < 0)
 		return (NULL);
-	while (buffer)
+	newline = ft_strdup(buffer);
+	bytes_read = BUFFER_SIZE;
+	while (bytes_read == BUFFER_SIZE && !ft_strchr(buffer, '\n'))
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE * sizeof(char));
+		if (bytes_read < 0)
+			return (NULL);
+		buffer[bytes_read] = '\0';
+		newline = ft_strjoin_gnl(newline, buffer);
+	}
+	ft_residu(buffer, buffer + ft_strchr(buffer, '\n'));
+	return (newline);
 }
