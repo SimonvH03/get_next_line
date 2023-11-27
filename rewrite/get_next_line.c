@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 22:09:25 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 22:16:06 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ char	*get_next_line(int fd)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE * sizeof(char));
 		if (bytes_read < 0)
+		{
+			ft_buffclear(buffer, BUFFER_SIZE);
 			return (ft_free(newline));
+		}
 		buffer[bytes_read] = '\0';
 		newline = ft_strjoin_gnl(newline, buffer);
 	}
