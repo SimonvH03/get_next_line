@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 22:16:06 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 23:55:50 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,14 @@ char	*get_next_line(int fd)
 	while (bytes_read == BUFFER_SIZE && !ft_strchr(buffer, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE * sizeof(char));
-		if (bytes_read < 0)
-		{
-			ft_buffclear(buffer, BUFFER_SIZE);
+		if (bytes_read < 0) // clear buffer??
 			return (ft_free(newline));
-		}
 		buffer[bytes_read] = '\0';
 		newline = ft_strjoin_gnl(newline, buffer);
 	}
+	ft_residu(buffer);
 	if (newline[0] == 0)
 		return (ft_free(newline));
-	ft_residu(buffer);
 	return (newline);
 }
 
