@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 20:31:46 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 22:07:12 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ int	ft_strchr(const char *str, char c)
 	return (0);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup_gnl(const char *src)
 {
 	int		i;
 	char	*ptr;
 
-	i = ft_strlen(src);
+	i = ft_strchr(src, '\n');
+	if (i == 0)
+		i = ft_strlen(src);
 	ptr = (char *)malloc((i + 1) * sizeof(char));
 	if (ptr == NULL)
 		return (NULL);

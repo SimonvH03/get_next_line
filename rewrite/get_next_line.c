@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 21:19:55 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 22:09:25 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin_gnl(const char *newline, const char *buffer)
 	const int	b_nl = ft_strchr(buffer, '\n');
 	int			i;
 
-	if (b_len > b_nl)
+	if (b_nl == 0)
 		i = n_len + b_len;
 	else
 		i = n_len + b_nl;
@@ -55,16 +55,18 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, buffer, 0) < 0)
 		return (NULL);
-	newline = ft_strdup(buffer);
+	newline = ft_strdup_gnl(buffer);
 	bytes_read = BUFFER_SIZE;
 	while (bytes_read == BUFFER_SIZE && !ft_strchr(buffer, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE * sizeof(char));
 		if (bytes_read < 0)
-			return (NULL);
+			return (ft_free(newline));
 		buffer[bytes_read] = '\0';
 		newline = ft_strjoin_gnl(newline, buffer);
 	}
+	if (newline[0] == 0)
+		return (ft_free(newline));
 	ft_residu(buffer);
 	return (newline);
 }
@@ -77,7 +79,7 @@ char	*get_next_line(int fd)
 
 // 	line = 0;
 // 	fd = open("test5.txt", O_RDONLY);
-// 	while (line < 20)
+// 	while (line < 100)
 // 	{
 // 		nextline = get_next_line(fd);
 // 		if (nextline == NULL)

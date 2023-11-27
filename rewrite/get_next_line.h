@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:09 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 20:29:39 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 22:00:07 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 char	*get_next_line(int fd);
 
 char	*ft_strjoin_gnl(const char *pile, const char *buffer);
-void	ft_residu(char *buffer, const char *residu);
+void	ft_residu(char *buffer);
 
 void	*ft_free(void *p);
 int		ft_strlen(const char *src);
 int		ft_strchr(const char *str, char c);
-char	*ft_strdup(const char *src);
+char	*ft_strdup_gnl(const char *src);
 
 #endif

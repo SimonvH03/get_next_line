@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 20:54:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/24 18:10:09 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:30:28 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_read_nl(int fd, char *pile)
 	while (bytes_read == BUFFER_SIZE && !ft_strchr(pile, '\n'))
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		pile = ft_strjoin(pile, buffer, bytes_read);
+		pile = ft_strnjoin(pile, buffer, bytes_read);
 	}
 	free(buffer);
 	return (pile);
