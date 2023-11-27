@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 21:09:24 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:17:20 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,27 @@ char	*get_next_line(int fd)
 	ft_residu(buffer, buffer + ft_strchr(buffer, '\n'));
 	return (newline);
 }
+
+// int	main(void)
+// {
+// 	int			fd;
+// 	int			line;
+// 	char		*nextline;
+
+// 	line = 0;
+// 	fd = open("test5.txt", O_RDONLY);
+// 	while (line < 20)
+// 	{
+// 		nextline = get_next_line(fd);
+// 		if (nextline == NULL)
+// 		{
+// 			printf("nextline == NULL: stop.");
+// 			return (0);
+// 		}
+// 		printf(">> nextline %i:	%s\n", line, nextline);
+// 		line++;
+// 		free(nextline);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
