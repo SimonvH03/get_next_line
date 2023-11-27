@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 21:17:20 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:19:55 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ char	*ft_strjoin_gnl(const char *newline, const char *buffer)
 	return (ptr);
 }
 
-void	ft_residu(char *buffer, const char *residu)
+void	ft_residu(char *buffer)
 {
-	if (residu)
+	const char	*residu = buffer + ft_strchr(buffer, '\n');
+
+	if (residu > buffer)
 		while (*residu)
 			*buffer++ = *residu++;
 	*buffer = '\0';
@@ -63,7 +65,7 @@ char	*get_next_line(int fd)
 		buffer[bytes_read] = '\0';
 		newline = ft_strjoin_gnl(newline, buffer);
 	}
-	ft_residu(buffer, buffer + ft_strchr(buffer, '\n'));
+	ft_residu(buffer);
 	return (newline);
 }
 
