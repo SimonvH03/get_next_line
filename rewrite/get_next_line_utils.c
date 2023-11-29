@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 23:14:03 by simon            ###   ########.fr       */
+/*   Updated: 2023/11/29 15:22:19 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ char	*ft_strdup_gnl(const char *src)
 	return (ptr);
 }
 
-// void	ft_buffclear(char *buffer, size_t n)
-// {
-// 	if (buffer)
-// 		while (n--)
-// 			buffer[n] = 0;
-// }
+void	ft_buffclear(char *buffer, size_t n)
+{
+	if (buffer)
+		while (n--)
+			buffer[n] = 0;
+}
