@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:09 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/27 23:03:15 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/07 17:50:48 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 10
 # endif
 
 char	*get_next_line(int fd);
@@ -28,7 +28,7 @@ char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(const char *pile, const char *buffer);
 void	ft_residu(char *buffer);
 
-void	*ft_free(void *p);
+void	*ft_free(char **p);
 int		ft_strlen(const char *src);
 int		ft_strchr(const char *str, char c);
 char	*ft_strdup_gnl(const char *src);

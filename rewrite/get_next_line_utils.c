@@ -6,17 +6,17 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/29 15:22:19 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/12/07 19:09:33 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_free(void *p)
+void	*ft_free(char **p)
 {
-	free(p);
-	p = NULL;
-	return (p);
+	free(*p);
+	*p = NULL;
+	return (NULL);
 }
 
 int	ft_strlen(const char *src)
@@ -36,14 +36,9 @@ int	ft_strchr(const char *str, char c)
 
 	i = 0;
 	if (str)
-	{
 		while (str[i] || str[i] == c)
-		{
-			if (str[i] == c)
-				return (i + 1);
-			i++;
-		}
-	}
+			if (str[i++] == c)
+				return (i);
 	return (0);
 }
 
