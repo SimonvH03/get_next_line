@@ -6,26 +6,26 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/12/07 19:09:33 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:53:52 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_free(char **p)
+void	*ft_free(char **pp)
 {
-	free(*p);
-	*p = NULL;
+	free(*pp);
+	*pp = NULL;
 	return (NULL);
 }
 
-int	ft_strlen(const char *src)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
 	i = 0;
-	if (src)
-		while (src[i])
+	if (str)
+		while (str[i])
 			i++;
 	return (i);
 }
@@ -42,26 +42,9 @@ int	ft_strchr(const char *str, char c)
 	return (0);
 }
 
-char	*ft_strdup_gnl(const char *src)
+void	ft_memclear(char *src, size_t n)
 {
-	int		i;
-	char	*ptr;
-
-	i = ft_strchr(src, '\n');
-	if (i == 0)
-		i = ft_strlen(src);
-	ptr = (char *)malloc((i + 1) * sizeof(char));
-	if (ptr == NULL)
-		return (NULL);
-	ptr[i] = '\0';
-	while (i--)
-		ptr[i] = src[i];
-	return (ptr);
-}
-
-void	ft_buffclear(char *buffer, size_t n)
-{
-	if (buffer)
+	if (src)
 		while (n--)
-			buffer[n] = 0;
+			src[n] = 0;
 }
