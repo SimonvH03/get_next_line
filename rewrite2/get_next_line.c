@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/12/08 19:59:27 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:07:28 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,26 +108,26 @@ char	*get_next_line(int fd)
 	return (newline);
 }
 
-int	main(void)
-{
-	int			fd;
-	int			line;
-	char		*nextline;
+// int	main(void)
+// {
+// 	int			fd;
+// 	int			line;
+// 	char		*nextline;
 
-	line = 0;
-	fd = open("giant_line.txt", O_RDONLY);
-	while (line < 15)
-	{
-		nextline = get_next_line(fd);
-		if (nextline == NULL)
-		{
-			printf("nextline == NULL: stop.\n");
-			return (0);
-		}
-		printf(">> nextline %i:	%s\n", line, nextline);
-		line++;
-		free(nextline);
-	}
-	close(fd);
-	return (0);
-}
+// 	line = 0;
+// 	fd = open("giant_line.txt", O_RDONLY);
+// 	while (line < 15)
+// 	{
+// 		nextline = get_next_line(fd);
+// 		if (nextline == NULL)
+// 		{
+// 			printf("nextline == NULL: stop.\n");
+// 			return (0);
+// 		}
+// 		printf(">> nextline %i:	%s\n", line, nextline);
+// 		line++;
+// 		free(nextline);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
