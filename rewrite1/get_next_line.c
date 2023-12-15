@@ -6,7 +6,7 @@
 /*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/12/08 18:43:26 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:01:51 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,13 @@ char	*ft_strjoin_gnl(const char *newline, const char *buffer)
 void	ft_residu(char *buffer)
 {
 	const char	*residu = buffer + ft_strchr(buffer, '\n');
-	int			i;
 
-	i = 0;
 	if (residu > buffer)
 	{
-		while (residu[i])
-		{
-			buffer[i] = residu[i];
-			i++;
-		}
+		while (residu)
+			*buffer++ = *residu++;
 	}
-	buffer[i] = '\0';
+	buffer = '\0';
 }
 
 char	*get_next_line(int fd)
