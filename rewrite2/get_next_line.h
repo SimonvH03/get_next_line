@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:09 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/12/08 19:29:16 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:27:08 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
@@ -31,8 +31,8 @@ char	*ft_read_gnl(char **newline, char *buffer, int fd);
 void	ft_remainder_gnl(char *buffer);
 
 void	*ft_free(char **p);
-int		ft_strlen(const char *src);
-int		ft_strchr(const char *str, char c);
+int		ft_strlen_gnl(const char *src);
+int		ft_strchr_gnl(const char *str, char c);
 void	ft_memclear(char *buffer, size_t n);
 
 #endif

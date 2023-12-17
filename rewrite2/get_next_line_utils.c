@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:18 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/12/08 18:53:52 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:13:36 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_free(char **pp)
 	return (NULL);
 }
 
-int	ft_strlen(const char *str)
+int	ft_strlen_gnl(const char *str)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ft_strchr(const char *str, char c)
+int	ft_strchr_gnl(const char *str, char c)
 {
 	int	i;
 
