@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/12/16 19:42:33 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/20 21:23:58 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../../libft/libft.h"
+#include "libft.h"
 
 char	*ft_strdup_gnl(const char *buffer)
 {
@@ -90,7 +90,8 @@ void	ft_remainder_gnl(char *buffer)
 			i++;
 		}
 	}
-	buffer[i] = '\0';
+	while (i < BUFFER_SIZE)
+		buffer[i++] = '\0';
 }
 
 char	*get_next_line(int fd)
@@ -102,11 +103,13 @@ char	*get_next_line(int fd)
 		return (NULL);
 	newline = ft_strdup_gnl(buffer);
 	newline = ft_read_gnl(&newline, buffer, fd);
+	ft_putstr("\n\n\nbuffer:	");
+	ft_writing(buffer, BUFFER_SIZE + 1);
 	ft_remainder_gnl(buffer);
 	if (newline)
 		if (newline[0] == 0)
 			ft_free(&newline);
-	ft_putstr("\n\n\nbuffer:	");
+	ft_putstr("\n\n\nremain:	");
 	ft_writing(buffer, BUFFER_SIZE + 1);
 	return (newline);
 }
