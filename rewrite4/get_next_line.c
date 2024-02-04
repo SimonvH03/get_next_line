@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:11:14 by svan-hoo          #+#    #+#             */
-/*   Updated: 2024/01/23 19:54:07 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2024/02/04 11:44:42 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ char	*get_next_line(int fd)
 // 		nextline = get_next_line(fd);
 // 		printf("\nline %d:\t%s", line, nextline);
 // 		line++;
-//		if (nextline == NULL)
-//			break ;
+// 		if (nextline == NULL)
+// 			break ;
 // 		free(nextline);
 // 	}
 // 	close(fd);
